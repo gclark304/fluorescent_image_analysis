@@ -1,9 +1,13 @@
 %% for folder contains multiple images
 clc
 clear
-folder_name= ' ';
+folder_name='/Users/gretchen/Documents/ds_app_zeiss';
 cd(folder_name)
-key_word='zt20';
+key_word='PS';
+channel=2; %% 2 or 3
+area_low=200;
+area_high=3000;
+%%
 d3=dir('*.lsm');
 cell_length=[];
 cell_width=[];
@@ -15,8 +19,13 @@ for i=1:1:length(d3)
 d3(i).name;
 if ~isempty(strfind(d3(i).name,key_word)) && ~isempty(strfind(d3(i).name,'lsm'))
 img=double(imread([folder_name '/' d3(i).name]));
-img1=img(:,:,1); %%
-img2=img(:,:,2);
+if channel==2
+img1=img(:,:,1); %% fluorescent image 
+img2=img(:,:,2); %% bright field
+else
+img1=img(:,:,2); %% fluorescent image
+img2=img(:,:,3); %% bright field 
+end
 bw=edge(img2,'prewitt');
 se = strel('disk',5);
 bw2=imdilate(bw,se);
@@ -50,8 +59,9 @@ r_width=regionprops(bw5,'MinorAxisLength');
 r_area=regionprops(bw5,'Area');
 if isempty(r_length)==0 && length(r_length)<2
 r_ratio=r_length.MajorAxisLength/r_width.MinorAxisLength;
-if r_length.MajorAxisLength>15 && r_length.MajorAxisLength<60 ...
-    && r_ratio<1.0 && r_area.Area>500 &&r_area.Area<1000 %% lenth range and repeat number
+% if r_length.MajorAxisLength>25 && r_length.MajorAxisLength<60 ...
+%     && r_ratio<1.5 && r_area.Area>500 && r_area.Area<1000 %% lenth range and repeat number
+if r_area.Area>area_low && r_area.Area<area_high %% lenth range and repeat number
 hold on
 plot(bx,by)
 pause(1)
