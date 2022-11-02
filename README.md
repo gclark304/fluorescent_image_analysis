@@ -13,6 +13,4 @@ To use this script, insert the pathway to the folder with your images on line 4.
 **If you use this script, make sure to cite us!**
 
 
-**Citation**: Circadian Control of Heparan Sulfate Levels Times Phagocytosis of Amyloid Beta Aggregates
-Gretchen T Clark, Yanlei Yu, Cooper A Urban, Guo Fu, Chunyu Wang, Fuming Zhang, Robert J Linhardt, Jennifer Marie Hurley
-bioRxiv 2021.05.04.442651; doi: https://doi.org/10.1101/2021.05.04.442651
+**Citation**: Clark GT, Yu Y, Urban CA, Fu G, Wang C, Zhang F, et al. (2022) Circadian control of heparan sulfate levels times phagocytosis of amyloid beta aggregates. PLoS Genet 18(2): e1009994. https://doi.org/10.1371/journal.pgen.1009994
